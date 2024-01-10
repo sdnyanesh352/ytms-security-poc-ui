@@ -7,6 +7,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,13 @@ import {RegisterComponent} from './components/register/register.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
     BrowserAnimationsModule
   ],
   providers: [],

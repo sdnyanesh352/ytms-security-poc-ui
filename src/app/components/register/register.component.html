@@ -1,1 +1,118 @@
-<p>register works!</p>
+<head>
+    <title>Page Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <style>
+       #sub {
+       display: block;
+       width: 100%;
+       border: 1px solid #ddd;
+       padding: 10px;
+       border-radius: 5px;
+       color: #333;
+       }
+       #sub:focus {
+       outline: none;
+       }
+    </style>
+ </head>
+ <body>
+    <div style="justify-content: flex-end; display: flex;">
+        <img
+        src="../../../../assets/ServiceNowImage.png"
+        alt="ytms" width="65%" height="100vh" style="height: 100vh;">
+       <div class="wrapper rounded bg-white" style="overflow: auto;height: 100vh; padding: 30px 45px;box-shadow: 5px 25px 35px #3535356b;">
+          <div class=" h3" style="display: grid;justify-items: center;">SignUp</div>
+          <form>
+             <div class="form">
+                <div class="row">
+                   <div class="form-outline col-md-6 mt-3">
+                      <!-- <label class="form-label" for="form2Example1">First Name</label> -->
+                      <input type="text" id="form2Example1" placeholder="First Name" class="form-control" required />
+                   </div>
+                   <div class="form-outline col-md-6 mt-3">
+                      <!-- <label class="form-label" for="form2Example1">Last Name</label> -->
+                      <input type="text" id="form2Example1" placeholder="Last Name" class="form-control" required />
+                   </div>
+                </div>
+                <div class="row">
+                   <div class="form-outline col-md-6 mt-3">
+                      <!-- <label class="form-label" for="form2Example1">Email</label> -->
+                      <input type="email" id="form2Example1" placeholder="Email" class="form-control" />
+                   </div>
+                   <div class="form-outline col-md-6 mt-3">
+                      <!-- <label class="form-label" for="form2Example1">Phone Number</label> -->
+                      <input type="tel" id="form2Example1" placeholder="Phone Number" class="form-control" />
+                   </div>
+                </div>
+                <div class="row">
+                   <div class="form-outline col-md-6 mt-3">
+                      <!-- <label class="form-label" for="form2Example1">Birthday</label> -->
+                      <input type="date" id="form2Example1" placeholder="Birthday" class="form-control" required />
+                   </div>
+                   <div class="col-md-6 mt-3">
+                      <!-- <label class="form-label" for="form2Example1">Gender</label> -->
+                      <div class="form-check form-check-inline">
+                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender" value="option1"
+                            checked />
+                         <label class="form-check-label" for="femaleGender">Female</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender" value="option2" />
+                         <label class="form-check-label" for="maleGender">Male</label>
+                      </div>
+                   </div>
+                </div>
+                <div class="row">
+                   <div class="form-outline col-md-6 mt-3">
+                      <!-- <label class="form-label" for="form2Example1">Employee Id</label> -->
+                      <input type="text" id="form2Example1" placeholder="Employee Id" class="form-control" required />
+                   </div>
+                   <div class="form-outline col-md-6 mt-3">
+                      <!-- <label class="form-label" for="form2Example1">experience</label> -->
+                      <input type="text" id="form2Example1" placeholder="experience" class="form-control" required />
+                   </div>
+                </div>
+                <div class="row">
+                   <div class="form-outline col-md-6 mt-3">
+                      <!-- <label class="form-label" for="form2Example1">Project</label> -->
+                      <input type="text" id="form2Example1" placeholder="Project" class="form-control" required />
+                   </div>
+                   <div class="form-outline col-md-6 mt-3">
+                      <!-- <label class="form-label" for="form2Example1">Location</label> -->
+                      <input type="text" id="form2Example1" placeholder="Location" class="form-control" required />
+                   </div>
+                </div>
+                <div class="row">
+                   <div class="form-outline col-md-6 mt-3">
+                      <!-- <label class="form-label" for="form2Example1">Password</label> -->
+                      <input type="text" id="form2Example1" placeholder="Password" class="form-control" required />
+                   </div>
+                   <div class="form-outline col-md-6 mt-3">
+                      <!-- <label class="form-label" for="form2Example1">Confirm Password</label> -->
+                      <input type="text" id="form2Example1" placeholder="Confirm Password" class="form-control" required />
+                   </div>
+                </div>
+                <div class="my-3">
+                   <!-- <label class="form-label" for="form2Example1">Designation</label> -->
+                   <select id="sub" required>
+                      <option value="" selected hidden>Select Designation</option>
+                      <option value="Maths">Sr. Software Engg</option>
+                      <option value="Science">Project Manager</option>
+                      <option value="Social">Trainee</option>
+                      <option value="Hindi">Junior Manager</option>
+                   </select>
+                </div>
+                <!-- Submit button -->
+                <button type="button" class="col-md-12 mt-md-0 mt-3 btn btn-primary btn-block mb-4">Sign in</button>
+                <!-- Register buttons -->
+                <div class="text-center">
+                   <p>already a member? <a href="/login">Login</a></p>
+                </div>
+             </div>
+          </form>
+       </div>
+    </div>
+ </body>
