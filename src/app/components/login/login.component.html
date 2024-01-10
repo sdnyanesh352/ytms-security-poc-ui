@@ -1,79 +1,84 @@
 <div style="justify-content: flex-end; display: flex;">
-    <img
-      src="../../../../assets/ServiceNowImage.png"
-      alt="ytms" width="65%" height="100vh" style="height: 100vh;">
-    <div class="wrapper rounded bg-white" style="overflow: auto;height: 100vh; width: 35%; padding: 30px 45px;
+  <img
+    alt="ytms"
+    height="100vh" src="./assets/ServiceNowImage.png" style="height: 100vh;" width="65%">
+  <div class="wrapper rounded bg-white" style="overflow: auto;height: 100vh; width: 35%; padding: 30px 45px;
           box-shadow: 5px 25px 35px #3535356b;">
-      <div class="h3" style="display: grid;justify-items: center;margin-bottom: 1em;">SignIn</div>
-      <form [formGroup]="loginForm">
-        <!-- Email input -->
-        <div class="form-outline mb-4">
-          <label style="font-size: small; margin-bottom: 0rem;" >Email</label>
-          <input type="email" formControlName="email" placeholder="Email" class="form-control" />
-          <div class="invalid-feedback"
-            *ngIf="this.loginForm.get('email')?.touched && this.loginForm.get('email')?.hasError('required')">
-            Email is required</div>
-          <div class="invalid-feedback"
-            *ngIf="this.loginForm.get('email')?.touched && this.loginForm.get('email')?.hasError('email')">
-            Email must be a valid</div>
-  
-          <div class="invalid-feedback"
-          *ngIf="role_id==4">
-           Admin is working your registraion kindly wait sometime</div>
+    <div class="h3" style="display: grid;justify-items: center;margin-bottom: 1em;">SignIn</div>
+    <form [formGroup]="loginForm">
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <label style="font-size: small; margin-bottom: 0rem;">Email</label>
+        <input class="form-control" formControlName="email" placeholder="Email" type="email"/>
+        <div *ngIf="this.loginForm.get('email')?.touched && this.loginForm.get('email')?.hasError('required')"
+             class="invalid-feedback">
+          Email is required
         </div>
-  
-        <!-- Password input -->
-        <div class="form-outline mb-4">
-          <label style="font-size: small; margin-bottom: 0rem;" >Password</label>
-          <input type="password" formControlName="password" placeholder="Password" class="form-control" />
-          <div class="invalid-feedback"
-            *ngIf="this.loginForm.get('password')?.touched && this.loginForm.get('password')?.hasError('required')">
-            Password is required</div>
-          <div class="invalid-feedback"
-            *ngIf="this.loginForm.get('password')?.touched && this.loginForm.get('password')?.hasError('pattern')">
-            Invalid password
-          </div>
+        <div *ngIf="this.loginForm.get('email')?.touched && this.loginForm.get('email')?.hasError('email')"
+             class="invalid-feedback">
+          Email must be a valid
         </div>
-  
-        <!-- 2 column grid layout for inline styling -->
-        <div class="row mb-4">
-          <div class="col d-flex justify-content-center">
-            <!-- Checkbox -->
-            <!-- <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" checked />
-              <label class="form-check-label" > Remember me </label>
-            </div> -->
-          </div>
-  
-          <!-- <div class="col">
-           
-            <a href="#!">Forgot password?</a>
+
+        <div *ngIf="role_id==4"
+             class="invalid-feedback">
+          Admin is working your registraion kindly wait sometime
+        </div>
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-4">
+        <label style="font-size: small; margin-bottom: 0rem;">Password</label>
+        <input class="form-control" formControlName="password" placeholder="Password" type="password"/>
+        <div *ngIf="this.loginForm.get('password')?.touched && this.loginForm.get('password')?.hasError('required')"
+             class="invalid-feedback">
+          Password is required
+        </div>
+        <div *ngIf="this.loginForm.get('password')?.touched && this.loginForm.get('password')?.hasError('pattern')"
+             class="invalid-feedback">
+          Invalid password
+        </div>
+      </div>
+
+      <!-- 2 column grid layout for inline styling -->
+      <div class="row mb-4">
+        <div class="col d-flex justify-content-center">
+          <!-- Checkbox -->
+          <!-- <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" checked />
+            <label class="form-check-label" > Remember me </label>
           </div> -->
         </div>
-  
-        <!-- Submit button -->
-        <button type="button" style="width: 100%;" [disabled]="!loginForm.valid" class="btn btn-primary btn-block mb-4" (click)="signIn()">Sign
-          in</button>
-  
-        <!-- Register buttons -->
-        <div class="text-center">
-          <p>Not a member? <a [routerLink]="['../register']">Register</a></p>
-          <p>or sign up with:</p>
-          <a href= "https://www.facebook.com/" type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-  
-          <a href="https://www.google.co.in/" type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-google"></i></a>
-  
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-twitter"></i>
-          </button>
-  
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-github"></i>
-          </button>
-        </div>
-      </form>
-    </div>
+
+        <!-- <div class="col">
+
+          <a href="#!">Forgot password?</a>
+        </div> -->
+      </div>
+
+      <!-- Submit button -->
+      <button (click)="signIn()" [disabled]="!loginForm.valid" class="btn btn-primary btn-block mb-4" style="width: 100%;" type="button">Sign
+        in
+      </button>
+
+      <!-- Register buttons -->
+      <div class="text-center">
+        <p>Not a member? <a [routerLink]="['../register']">Register</a></p>
+        <p>or sign up with:</p>
+        <a class="btn btn-link btn-floating mx-1" href="https://www.facebook.com/" type="button">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <a class="btn btn-link btn-floating mx-1" href="https://www.google.co.in/" type="button">
+          <i class="fab fa-google"></i></a>
+
+        <button class="btn btn-link btn-floating mx-1" type="button">
+          <i class="fab fa-twitter"></i>
+        </button>
+
+        <button class="btn btn-link btn-floating mx-1" type="button">
+          <i class="fab fa-github"></i>
+        </button>
+      </div>
+    </form>
   </div>
+</div>

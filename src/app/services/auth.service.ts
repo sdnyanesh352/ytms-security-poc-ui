@@ -1,7 +1,7 @@
-import { Injectable, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpEvent, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
+import {Inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {SESSION_STORAGE, StorageService} from 'ngx-webstorage-service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +10,7 @@ export class AuthService {
   constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private http: HttpClient) {
 
   }
+
   isAuthenticated(): boolean {
     return this.getToken() !== undefined;
   }
