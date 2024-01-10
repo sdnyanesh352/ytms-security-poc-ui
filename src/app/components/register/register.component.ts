@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import { CustomValidators } from '../Validators/CustomValidators';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +24,12 @@ export class RegisterComponent {
     { validators: CustomValidators.passwordsMatching }
   )
 
-  constructor(private apiService: ApiServiceService, private router: Router, private toastrService: ToastrService) { }
+  constructor(private router1: Router,  private userService: UserService,private authService: AuthService,private apiService: ApiServiceService, private router: Router, private toastrService: ToastrService) { 
+    if (this.authService.isAuthenticated()){
+    
+      this.userService.navigateByRoles();
+    }
+  }
   message:boolean=false;
 
   ngOnInit(): void {
@@ -47,7 +54,7 @@ export class RegisterComponent {
             this.toastrService.warning(res.error, 'Warning');
           }else {
             this.toastrService.success('Register Successfully!', 'Success');
-            this.router.navigate(['/register']);
+            this.router.navigate(['/login']);
           }
           this.message=true;
         } else {

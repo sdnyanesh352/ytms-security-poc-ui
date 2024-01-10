@@ -1,13 +1,14 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SESSION_STORAGE, StorageService} from 'ngx-webstorage-service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private http: HttpClient) {
+  constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private http: HttpClient,private router: Router) {
 
   }
 
@@ -36,4 +37,6 @@ export class AuthService {
     this.storage.remove("user");
     return this.storage.remove("auth_token");
   }
+
+  
 }
