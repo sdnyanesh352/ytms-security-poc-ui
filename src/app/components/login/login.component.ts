@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {ApiServiceService} from 'src/app/services/api-service.service';
 import {AuthService} from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +18,18 @@ export class LoginComponent {
   });
   role_id: any
 
-  constructor(private router1: Router, private apiService: ApiServiceService, private toastrService: ToastrService, private authService: AuthService) {
+  constructor(private router1: Router,  private userService: UserService,private authService: AuthService,private apiService: ApiServiceService, private router: Router, private toastrService: ToastrService) { 
+    if (this.authService.isAuthenticated()){
+    
+      this.userService.navigateByRoles();
+    }
   }
 
   ngOnInit(): void {
+
+  }
+  ngOnChanges(){
+   
   }
 
   signIn() {
