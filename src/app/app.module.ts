@@ -14,6 +14,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatButtonModule} from "@angular/material/button";
+import {MAT_DATE_LOCALE} from "@angular/material/core";
+import {authInterceptorProviders} from "./interceptor/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,13 @@ import {MatButtonModule} from "@angular/material/button";
     MatMenuModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    authInterceptorProviders,
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'en-GB',
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
