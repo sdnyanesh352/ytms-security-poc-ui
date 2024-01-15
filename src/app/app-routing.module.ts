@@ -8,10 +8,28 @@ import {AssociateDashboardComponent} from './modules/associate/associate-dashboa
 import {AdminGuard} from "./guard/admin.guard";
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'userDashboard', component: AssociateDashboardComponent, canActivate: [AuthGuard]},
-  {path: 'adminDashboard', component: AdminDashboardComponent, canActivate: [AdminGuard]}
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'userDashboard',
+    component: AssociateDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'adminDashboard',
+    component: AdminDashboardComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: '**',
+    component: LoginComponent
+  }
 ];
 
 @NgModule({

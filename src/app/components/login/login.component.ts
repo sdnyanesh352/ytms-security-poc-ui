@@ -4,7 +4,8 @@ import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {ApiServiceService} from 'src/app/services/api-service.service';
 import {AuthService} from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
+import {UserService} from 'src/app/services/user.service';
+import {JwtService} from "../../services/jwt.service";
 
 @Component({
   selector: 'app-login',
@@ -13,23 +14,28 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent {
   loginForm = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, [Validators.required, Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/)]),
+    email: new FormControl(null,
+      [Validators.required, Validators.email]),
+    password: new FormControl(null,
+      [Validators.required, Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/)]),
   });
   role_id: any
 
-  constructor(private router1: Router,  private userService: UserService,private authService: AuthService,private apiService: ApiServiceService, private router: Router, private toastrService: ToastrService) { 
-    if (this.authService.isAuthenticated()){
-    
-      this.userService.navigateByRoles();
-    }
+  constructor(private router: Router,
+              private userService: UserService,
+              private authService: AuthService,
+              private jwtService: JwtService,
+              private apiService: ApiServiceService,
+              private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
-
+    if (this.authService.isAuthenticated())
+      this.userService.navigateByRoles();
   }
-  ngOnChanges(){
-   
+
+  ngOnChanges() {
+
   }
 
   signIn() {
@@ -45,18 +51,8 @@ export class LoginComponent {
     this.apiService.login(user).subscribe(res => {
         if (res.token != null) {
           this.toastrService.success('Login Successfully!', 'Success');
-          this.authService.storeToken(res.token, res.user);
-          if (res.user.userRole.roleTypes == 'ROLE_ADMIN_USER')
-            this.router1.navigateByUrl('/adminDashboard');
-
-          if (res.user.userRole.roleTypes == 'ROLE_NORMAL_USER')
-            this.router1.navigateByUrl('/userDashboard');
-        } else {
-          if (res.hasOwnProperty('error')) {
-            this.toastrService.warning(res.error, 'Warning1');
-          } else {
-            this.toastrService.warning(res.error, 'Admin is working on your registration kindly wait for some time');
-          }
+          this.authService.storeToken(res.token);
+          this.routeUserDashboard();
         }
       },
       err => {
@@ -65,4 +61,13 @@ export class LoginComponent {
       });
   }
 
+  private routeUserDashboard() {
+    const token = this.authService.getToken();
+    const role = this.jwtService.getRoleFromToken(token);
+    if (role == 'ROLE_ADMIN_USER')
+      this.router.navigateByUrl('/adminDashboard');
+
+    if (role == 'ROLE_NORMAL_USER')
+      this.router.navigateByUrl('/userDashboard');
+  }
 }

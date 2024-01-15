@@ -1,83 +1,93 @@
 <div style="justify-content: flex-end; display: flex;">
-    <img
-       src="../../../../assets/ServiceNowImage.png"
-       alt="Girl in a jacket" width="60%" height="100vh" style="height: 100vh;">
-    <div class="wrapper rounded bg-white"
-       style="overflow: auto;height: 100vh; padding: 30px 45px;box-shadow: 5px 25px 35px #3535356b;">
-       <div class=" h3" style="display: grid;justify-items: center;">SignUp</div>
-       <form [formGroup]="registerForm">
-          <div class="form">
-             <div class="row">
-                <div class="form-outline col-md-6 mt-3">
-                   <label style="font-size: small; margin-bottom: 0rem;">First Name</label>
-                   <input type="text" formControlName="fullName" placeholder="First Name" class="form-control"
-                      required />
-                   <div class="invalid-feedback"
-                      *ngIf="this.registerForm.get('fullName')?.touched && this.registerForm.get('fullName')?.hasError('required')">
-                      First Name is required
-                   </div>
-                   <div class="invalid-feedback"
-                      *ngIf="this.registerForm.get('fullName')?.touched && this.registerForm.get('fullName')?.hasError('minlength')">
-                      minimum 4 characters is required</div>
-                   <div class="invalid-feedback"
-                      *ngIf="this.registerForm.get('fullName')?.touched && this.registerForm.get('fullName')?.hasError('maxlength')">
-                      maximum 20 characters is allowed</div>
-                   <div class="invalid-feedback"
-                      *ngIf="this.registerForm.get('fullName')?.touched && this.registerForm.get('fullName')?.hasError('pattern')">
-                      First Name is allow only alphanumeric characters</div>
-                </div>
-                
-             </div>
-             <div class="row">
-                <div class="form-outline col-md-6 mt-3">
-                   <label style="font-size: small; margin-bottom: 0rem;">Email</label>
-                   <input type="email" formControlName="email" placeholder="Email" class="form-control" />
-                   <div class="invalid-feedback"
-                      *ngIf="this.registerForm.get('email')?.touched && this.registerForm.get('email')?.hasError('required')">
-                      Email is required</div>
-                   <div class="invalid-feedback"
-                      *ngIf="this.registerForm.get('email')?.touched && this.registerForm.get('email')?.hasError('email')">
-                      Email must be a valid</div>
-                </div>
-            
-             </div>
-             <div class="row">
-                <div class="form-outline col-md-6 mt-3">
-                   <label style="font-size: small; margin-bottom: 0rem;">Password</label>
-                   <input type="password" formControlName="password" placeholder="Password" class="form-control" required />
-                   <div class="invalid-feedback"
-                      *ngIf="this.registerForm.get('password')?.touched && this.registerForm.get('password')?.hasError('required')">
-                      Password is required</div>
-                   <div class="invalid-feedback"
-                      *ngIf="this.registerForm.get('password')?.touched && this.registerForm.get('password')?.hasError('pattern')">
-                      A password should be contain one uppercase,lowercase letter.It must contain a special character (@,
-                      $, !, &, etc) and length must be greater than or equal to 8 characters.
-                   </div>
-                </div>
-                <div class="form-outline col-md-6 mt-3">
-                   <label style="font-size: small; margin-bottom: 0rem;">Confirm Password</label>
-                   <input type="password" formControlName="passwordConfirm" placeholder="Confirm Password"
-                      class="form-control" required />
-                   <div class="invalid-feedback"
-                      *ngIf="this.registerForm.get('passwordConfirm')?.touched && this.registerForm.get('passwordConfirm')?.hasError('required')">
-                      Password Confirmation is required</div>
-                   <div class="invalid-feedback" *ngIf="this.registerForm.hasError('passwordsNotMatching')">
-                      Passwords are not matching!
-                   </div>
-                </div>
-             </div>
-             <!-- Submit button -->
-             <div *ngIf="message" class="alert alert-success" role="alert">
-                <h4 class="alert-heading">Registered Successfully</h4>
-                <!-- <button (click)="removeMsg()" type="button"  data-bs-dismiss="alert" aria-label="Close">X</button> -->
-              </div>
-             <button type="button" (click)="register()" [disabled]="!registerForm.valid"
-                class="col-md-12 mt-md-0 mt-3 btn btn-primary btn-block mb-4">Sign Up</button>
-             <!-- Register buttons -->
-             <div class="text-center">
-                <p>already a member? <a [routerLink]="['../login']">Login</a></p>
-             </div>
+  <img
+    alt="ytms"
+    height="100vh" src="./assets/ServiceNowImage.png" style="height: 100vh;" width="65%">
+  <div class="wrapper rounded bg-white"
+       style="overflow: auto;height: 100vh;width: 35%; padding: 30px 45px;box-shadow: 5px 25px 35px #3535356b;">
+    <div class=" h3" style="display: grid;justify-items: center;">SignUp</div>
+    <form [formGroup]="registerForm">
+      <div class="form">
+        <div class="row">
+          <div class="form-outline col-md-6 mt-3">
+            <label style="font-size: small; margin-bottom: 0rem;">First Name</label>
+            <input class="form-control" formControlName="fullName" placeholder="First Name" required
+                   type="text"/>
+            <div *ngIf="this.registerForm.get('fullName')?.touched && this.registerForm.get('fullName')?.hasError('required')"
+                 class="invalid-feedback">
+              First Name is required
+            </div>
+            <div *ngIf="this.registerForm.get('fullName')?.touched && this.registerForm.get('fullName')?.hasError('minlength')"
+                 class="invalid-feedback">
+              minimum 4 characters is required
+            </div>
+            <div *ngIf="this.registerForm.get('fullName')?.touched && this.registerForm.get('fullName')?.hasError('maxlength')"
+                 class="invalid-feedback">
+              maximum 20 characters is allowed
+            </div>
+            <div *ngIf="this.registerForm.get('fullName')?.touched && this.registerForm.get('fullName')?.hasError('pattern')"
+                 class="invalid-feedback">
+              First Name is allow only alphanumeric characters
+            </div>
           </div>
-       </form>
-    </div>
- </div>
+
+        </div>
+        <div class="row">
+          <div class="form-outline col-md-6 mt-3">
+            <label style="font-size: small; margin-bottom: 0rem;">Email</label>
+            <input class="form-control" formControlName="email" placeholder="Email" type="email"/>
+            <div *ngIf="this.registerForm.get('email')?.touched && this.registerForm.get('email')?.hasError('required')"
+                 class="invalid-feedback">
+              Email is required
+            </div>
+            <div *ngIf="this.registerForm.get('email')?.touched && this.registerForm.get('email')?.hasError('email')"
+                 class="invalid-feedback">
+              Email must be a valid
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="form-outline col-md-6 mt-3">
+            <label style="font-size: small; margin-bottom: 0rem;">Password</label>
+            <input class="form-control" formControlName="password" placeholder="Password" required type="password"/>
+            <div *ngIf="this.registerForm.get('password')?.touched && this.registerForm.get('password')?.hasError('required')"
+                 class="invalid-feedback">
+              Password is required
+            </div>
+            <div *ngIf="this.registerForm.get('password')?.touched && this.registerForm.get('password')?.hasError('pattern')"
+                 class="invalid-feedback">
+              A password should be contain one uppercase,lowercase letter.It must contain a special character (@,
+              $, !, &, etc) and length must be greater than or equal to 8 characters.
+            </div>
+          </div>
+          <div class="form-outline col-md-6 mt-3">
+            <label style="font-size: small; margin-bottom: 0rem;">Confirm Password</label>
+            <input class="form-control" formControlName="confirmPassword" placeholder="Confirm Password"
+                   required type="password"/>
+            <div *ngIf="this.registerForm.get('confirmPassword')?.touched && this.registerForm.get('confirmPassword')?.hasError('required')"
+                 class="invalid-feedback">
+              Password Confirmation is required
+            </div>
+            <div *ngIf="this.registerForm.hasError('passwordsNotMatching')" class="invalid-feedback">
+              Passwords are not matching!
+            </div>
+          </div>
+        </div>
+        <!-- Submit button -->
+        <div class="row">
+          <div *ngIf="message" class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Registered Successfully</h4>
+          </div>
+          <button (click)="register()" [disabled]="!registerForm.valid"
+                  class="col-md-12 mt-md-3 mt-3 btn btn-primary btn-block mb-4"
+                  type="button">Sign Up
+          </button>
+        </div>
+        <!-- Register buttons -->
+        <div class="text-center">
+          <p>already a member? <a [routerLink]="['']">Login</a></p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -3,12 +3,16 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import {Injectable} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {Observable} from 'rxjs';
+import {JwtService} from "../services/jwt.service";
+import Swal from "sweetalert2";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService,
+              private jwtService: JwtService,
+              private router: Router) {
   }
 
   canActivate(
@@ -20,14 +24,17 @@ export class AuthGuard implements CanActivate {
 
   private checkAuthentication(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
     if (this.authService.isAuthenticated()) {
-      const user = this.authService.getLoginUserDetails();
-      if (user) {
+      const token = this.authService.getToken();
+      if (token != undefined) {
+        //get roles from token
+        const role = this.jwtService.getRoleFromToken(token);
         // Check if route is restricted by role
-        if (user.userRole.roleTypes === 'ROLE_NORMAL_USER') {
+        if (role === 'ROLE_NORMAL_USER') {
           // Role not authorized, redirect to home page
           return true;
         } else {
           // Not authenticated, redirect to user dashboard or handle accordingly
+          Swal.fire('Error', 'Unauthorized', 'error');
           this.router.navigate(['']);
           return false;
         }

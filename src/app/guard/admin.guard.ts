@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 import {AuthService} from "../services/auth.service";
 import Swal from 'sweetalert2';
+import {JwtService} from "../services/jwt.service";
 
 @Injectable({
   providedIn: "root"
@@ -10,7 +11,9 @@ import Swal from 'sweetalert2';
 
 export class AdminGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService,
+              private jwtService: JwtService,
+              private router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot,
@@ -20,17 +23,17 @@ export class AdminGuard implements CanActivate {
 
   private checkAuthentication(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
     if (this.authService.isAuthenticated()) {
-      const user = this.authService.getLoginUserDetails();
-      if (user) {
+      const token = this.authService.getToken();
+      if (token != undefined) {
+        //get roles from token
+        const role = this.jwtService.getRoleFromToken(token);
         // Check if route is restricted by role
-        // if (route.data['userRole'] && route.data['userRole'].indexOf(user.userRole.roleTypes) === -1)
-        if (user.userRole.roleTypes === 'ROLE_ADMIN_USER') {
+        if (role === 'ROLE_ADMIN_USER') {
           // Role not authorized, redirect to home page
-          // return this.router.createUrlTree(['/userDashboard']);
           return true;
         } else {
           // Not authenticated, redirect to user dashboard or handle accordingly
-          if (user.userRole.roleTypes === 'ROLE_NORMAL_USER') {
+          if (role === 'ROLE_NORMAL_USER') {
             Swal.fire('Error', 'Unauthorized', 'error');
             this.router.navigate(['userDashboard']);
           } else {
